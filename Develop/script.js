@@ -1,110 +1,65 @@
-// function randomString(len, charSet) {
-//   charSet = charSet || 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-//   var randomString = '';
-//   for (var i = 0; i < len; i++) {
-//       var randomPoz = Math.floor(Math.random() * charSet.length);
-//       randomString += charSet.substring(randomPoz,randomPoz+1);
-//   }
-//   console.log(randomString);
-//   return randomString;
-// }
-
-// var randomValue = randomString(5);
-
 //Assignment Code - makes the generate button a variable in the script
 var generateBtn = document.querySelector("#generate");
 
-//Password Character Arrays - arrays for the writePassword function to choose from
-// var totalChars = window.prompt("How many characters do you want your password to contain?")
-
-// Set global variables
+// Global variables to validate character types and password length
 var upperCase = false;
 var lowerCase = false;
 var numbers = false;
-var specialChars = false;
+var symbols = false;
 var charLength = window.prompt("How many characters do you want your password to be?");
 
-var alphabet = "abcdefghijklmnopqrstuvwxyz";
-var uppercaseArray = alphabet.toUpperCase();
+//Global variables to establish character strings/arrays for confirmation if statements to choose from
+var alphabetString = "abcdefghijklmnopqrstuvwxyz";
+var lowercaseArray = alphabetString.split("");
+var uppercaseArray = lowercaseArray.map(lowercaseLetter => lowercaseLetter.toUpperCase());
 var numbersArray = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-var specialCharsArray = ["?", "!", "@", "#", "$", "%", "^", "&", "*"];
+var symbolsArray = ["?", "!", "@", "#", "$", "%", "^", "&", "*"];
 
-var lowercaseArray = alphabet.slice("");
+//Array that will contain every character type confirmed by the user
+var allCharsArray = [];
+console.log(allCharsArray);
+//lowercaseArray.concat(uppercaseArray, numbersArray, specialCharsArray);
 
-var passwordChoices = [];
+//Confirm if user wants lowercase letters and push to array for password to be generated from
+var hasLowercase = confirm("Do you want your password to contain lowercase letters?");
+if (hasLowercase) {
+  allCharsArray.push(lowercaseArray);
+  console.log(allCharsArray);
+}
+//Confirm if user wants uppercase letters and push to array for password to be generated from
+var hasUppercase = confirm("Do you want your password to contain uppercase letters?");
+if (hasUppercase) {
+  allCharsArray.push(uppercaseArray);
+  console.log(allCharsArray);
+}
+//Confirm if user wants numbers and push to array for password to be generated from
+var hasNumbers = confirm("Do you want your password to contain numbers?");
+if (hasNumbers) {
+  allCharsArray.push(numbersArray);
+  console.log(allCharsArray);
+}
+//Confirm if user wants symbols and push to array for password to be generated from
+var hasSymbols = confirm("Do you want your password to contain symbols?");
+if (hasSymbols) {
+  allCharsArray.push(symbolsArray);
+  console.log(allCharsArray);
+}
+
+//Final password variable made from user confirmed characters
 var password = "";
-
-// //Ask user to confirm type of characters in password
-// function userConfirm() {
-//   window.confirm("");
-//   window.confirm("");
-//   window.confirm("");
-//   window.confirm("");
-//   //Check true/false of user input (if statments for each char. type)
-//   if (upperCase === true) {
-//     //Push uppercase array into password
-//     password.push(uppercaseArray);
-//   };
-//   if () {
-
-//   };
-//   if () {
-
-//   };
-//   if () {
-
-//   };
-
-// };
-
-//Slicing lowercase alphabet string into an array
-for (var i = 0; i < alphabet.length; i++) {
-    console.log(alphabet.charAt(i));
-    passwordChoices.push(alphabet.charAt(i));
-    console.log(passwordChoices);
-}
-//Slicing uppercase alphabet string into an array
-for (var i = 0; i < alphabet.length; i++) {
-  console.log(alphabet.charAt(i));
-  passwordChoices.push(alphabet.charAt(i));
-  console.log(passwordChoices);
-}
-
-// Push numbers
+//Function to control password length
 
 // Push symbols
-
 for (var i = 0; i < charLength; i++) {
-  password += passwordChoices[Math.floor(Math.random() * passwordChoices.length)];
+  password += allCharsArray[Math.floor(Math.random() * allCharsArray.length)];
   console.log(password);
 }
 
 //Putting password into box for user to see
 function pushPassword() {
-  document.getElementById("generate").textContent = password;
+  document.getElementById("password").textContent = password;
 }
 
 pushPassword();
 
 
-
-
-
-// var totalArray = lowercaseArray.concat(uppercaseArray, numbersArray, specialCharsArray);
-
-// var hasLowercase = confirm("Do you want your password to contain lowercase letter?")
-// if (hasLowercase) {
-//   totalArray.push(lowercaseArray);
-//   console.log(totalArray);
-// }
-
-//Function that will select random indexes from totalArray
-function randomSelect() {
-  var randomIndex = Math.floor(Math.random() * numbersArray.length);
-  console.log(randomIndex);
-  console.log(numbersArray[randomIndex]);
-  console.log(lowercaseArray);
-  console.log(uppercaseArray);
-};
-
-randomSelect();
