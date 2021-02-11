@@ -4,7 +4,7 @@
 [https://anishamcdowell.github.io/Password-Generator]([https://anishamcdowell.github.io/Password-Generator/)
 
 ## Project Screenshot
-![Gif demonstrating project functionality](gif.gif)
+![Gif demonstrating project functionality](assets/gif.gif)
 
 ## Project Description
 
