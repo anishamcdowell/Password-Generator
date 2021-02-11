@@ -14,6 +14,7 @@
 
 //Assignment Code - makes the generate button a variable in the script
 var generateBtn = document.querySelector("#generate");
+var passwordBox = document.querySelector("#password");
 
 // Global variables to validate character types and password length
 var upperCase = false;
@@ -58,15 +59,14 @@ if (hasSymbols) {
 flatArray = allCharsArray.flat();
 console.log(flatArray);
 
-//function for password length and random selections
+//function for password length, random character selection, and making password visible in UI
 function finalPassword() {
-  //password length
   for (var i = 0; i < charLength; i++) {
     var randomIndex = flatArray[Math.floor(Math.random() * flatArray.length)];
     password.push(randomIndex);
-    var printedPassword = password.toString();
-    console.log(printedPassword);
   }
+  var printedPassword = password.toString().replace(/,/g,"");
+  passwordBox.textContent = printedPassword;
 };
 
 finalPassword();
